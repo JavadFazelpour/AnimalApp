@@ -4,7 +4,7 @@
     {
         public abstract void MakeNois();
     }
-    class Hippo : Animal
+    class Hippo : Animal,ISwimmer
     {
         public override void MakeNois()
         {
@@ -19,7 +19,7 @@
     {
         public bool BelongsToPack { get; protected set; } = false;
     }
-    class Wolf : Canine
+    class Wolf : Canine,IPackHunter
     {
         public Wolf(bool belongsToPack)
         {
@@ -40,7 +40,14 @@
     {
         static void Main(string[] args)
         {
-            Animal[] animals = {new Wolf(false),
+            /*
+            ISwimmer swimmer = new Hippo();
+            Wolf wolf = swimmer as Wolf;
+            if (wolf==null) Console.WriteLine("wolf is null");
+            else Console.WriteLine("wolf is casted");
+            */
+            /*
+             * Animal[] animals = {new Wolf(false),
                                 new Hippo(),
                                 new Wolf(true),
                                 new Wolf(false),
@@ -50,11 +57,13 @@
             {
                 animal.MakeNois();
                 
-                if (animal is Hippo hippo) hippo.Swim();
-                if (animal is Wolf wolf) wolf.HuntInPack();
+                if (animal is ISwimmer  swimmer) swimmer.Swim();
+                if (animal is IPackHunter hunter) hunter.HuntInPack();
                 
                 Console.WriteLine("---------------------");
             }
+
+            */
         }
     }
 }
